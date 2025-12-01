@@ -46,7 +46,7 @@ This repository provides Jupyter notebooks to replicate the experiments on five 
 
 Clone the repository and install the required packages.
 
-git clone [https://github.com/HosseinEyvazi/HyEMST.git](https://github.com/HosseinEyvazi/HyEMST)
+git clone https://github.com/your-username/HyEMST.git
 cd HyEMST
 pip install -r requirements.txt
 
@@ -77,11 +77,118 @@ optuna
 If you use HyEMST in your research, please cite our paper:
 
 @article{Eyvazi2026HyEMST,
-...
+title={HyEMST: A Hybrid Density-Distance Clustering Algorithm with Maximum Spanning Trees for Non-Convex Geometries},
+author={Eyvazi, Hossein and Rajaei, Ali},
+journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+year={2026},
+volume={},
+number={},
+pages={}
 }
-
 
 
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
+it contains dataset dir too
+note that noisy circle read from kaggle
+but rest of them are txt files
+final column is the label of them
+
+
+Attachment
+image.jpg
+Here is an updated, precise README.md that includes the datasets directory and the data format details you mentioned.
+
+
+# HyEMST: Hybrid Density-Distance Clustering with Maximum Spanning Trees
+
+This repository contains the official implementation of **HyEMST**, a hybrid density–distance clustering algorithm based on Maximum Spanning Trees (MST) for discovering non-convex clusters with heterogeneous densities.
+
+HyEMST decomposes data into micro-clusters, estimates volumetric densities via Minimum Volume Enclosing Ellipsoids (MVEE), builds a hybrid affinity kernel, extracts an MST, and performs adaptive density-aware merging to obtain the final clusters.
+
+---
+
+## Repository Structure
+
+HyEMST/
+├─ notebooks/
+│ ├─ HyEMST - JAIN.ipynb
+│ ├─ HyEMST - AGGREGATION.ipynb
+│ ├─ HyEMST - R15.ipynb
+│ ├─ HyEMST - D31.ipynb
+│ └─ HyEMST - NOISY CIRCLES.ipynb
+├─ datasets/
+│ ├─ jain.txt
+│ ├─ Aggregation.txt
+│ ├─ R15.txt
+│ └─ D31.txt
+├─ requirements.txt
+└─ README.md
+
+
+
+- `notebooks/HyEMST - *.ipynb`: End‑to‑end experiments for each dataset (loading, Optuna optimization, MST construction, adaptive merging, visualizations, and metrics).
+- `datasets/*.txt`: Benchmark datasets used in the paper.
+- `requirements.txt`: Python dependencies.
+
+---
+
+## Datasets
+
+### TXT Datasets (`datasets/`)
+
+The following benchmark datasets are stored as plain text files:
+
+- `jain.txt`
+- `Aggregation.txt`
+- `R15.txt`
+- `D31.txt`
+
+Each file has the same structure:
+
+- Columns **1..d**: feature coordinates (for these benchmarks, `d = 2`).
+- **Last column**: integer ground‑truth cluster label.
+
+Example loading pattern (used in all notebooks):
+
+import numpy as np
+
+data = np.loadtxt("datasets/jain.txt")
+X = data[:, :2] # features
+y_true = data[:, 2].astype(int) # ground-truth labels
+
+
+
+### Noisy Circles
+
+The **Noisy Circles** dataset is not stored as a local `.txt` file.  
+Instead, it is loaded/generated directly inside `HyEMST - NOISY CIRCLES.ipynb` using a Kaggle source / scikit-learn generator (see the first cells of that notebook). No manual download is required beyond running the notebook.
+
+---
+
+## Installation
+
+pip install -r requirements.txt
+
+
+`requirements.txt` should contain at least:
+
+numpy
+scikit-learn
+matplotlib
+optuna
+
+
+
+---
+
+## Running an Experiment
+
+1. Open the desired notebook in `notebooks/` (e.g., `HyEMST - JAIN.ipynb`).
+2. Make sure the corresponding dataset file exists under `datasets/`.
+3. Run all cells:
+   - The notebook will load the data.
+   - Perform Bayesian hyperparameter optimization with Optuna.
+   - Construct the MST and run adaptive merging.
+   - Produce visualizations and print comprehensive clustering metrics (NMI, AMI, ARI, FMI, Silhouette, DB, CH, etc.).
