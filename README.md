@@ -46,7 +46,7 @@ This repository provides Jupyter notebooks to replicate the experiments on five 
 
 Clone the repository and install the required packages.
 
-git clone [https://github.com/your-username/HyEMST.git](https://github.com/HosseinEyvazi/HyEMST)
+git clone [https://github.com/HosseinEyvazi/HyEMST.git](https://github.com/HosseinEyvazi/HyEMST)
 cd HyEMST
 pip install -r requirements.txt
 
