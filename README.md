@@ -46,7 +46,7 @@ This repository provides Jupyter notebooks to replicate the experiments on five 
 
 Clone the repository and install the required packages.
 
-git clone https://github.com/your-username/HyEMST.git
+git clone https://github.com/HosseinEyvazi/HyEMST.git
 cd HyEMST
 pip install -r requirements.txt
 
@@ -79,11 +79,7 @@ If you use HyEMST in your research, please cite our paper:
 @article{Eyvazi2026HyEMST,
 title={HyEMST: A Hybrid Density-Distance Clustering Algorithm with Maximum Spanning Trees for Non-Convex Geometries},
 author={Eyvazi, Hossein and Rajaei, Ali},
-journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-year={2026},
-volume={},
-number={},
-pages={}
+....
 }
 
 
